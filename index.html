@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetCare | Registro de Mascotas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="brand">
+      <span class="brand-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="14" r="3.2"></circle>
+          <ellipse cx="6" cy="7" rx="1.6" ry="2.2"></ellipse>
+          <ellipse cx="18" cy="7" rx="1.6" ry="2.2"></ellipse>
+          <ellipse cx="3.2" cy="12.5" rx="1.6" ry="2.2" transform="rotate(-25 3.2 12.5)"></ellipse>
+          <ellipse cx="20.8" cy="12.5" rx="1.6" ry="2.2" transform="rotate(25 20.8 12.5)"></ellipse>
+        </svg>
+      </span>
+      <div>
+        <h1>VetCare</h1>
+        <p class="subtitle">Cuidado confiable para tu mejor amigo</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="card form-card">
+      <h2>Registro de mascota</h2>
+      <p class="card-description">Completa los datos de tu mascota y los tuyos como dueño(a). Toda la información se guarda de forma segura.</p>
+
+      <form id="form-mascota">
+        <div class="form-grid">
+
+          <div class="field">
+            <label for="nombre_mascota">Nombre de la mascota</label>
+            <input type="text" id="nombre_mascota" required placeholder="Ej. Bruno">
+          </div>
+
+          <div class="field">
+            <label for="edad">Edad (años)</label>
+            <input type="number" id="edad" step="0.1" min="0" required placeholder="Ej. 3">
+          </div>
+
+          <div class="field">
+            <label for="peso">Peso (kg)</label>
+            <input type="number" id="peso" step="0.1" min="0" required placeholder="Ej. 36">
+          </div>
+
+          <div class="field">
+            <label for="especie">Especie</label>
+            <select id="especie" required>
+              <option value="">Seleccione...</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="raza">Raza</label>
+            <select id="raza" required>
+              <option value="">Seleccione primero la especie</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="tipo_atencion">Tipo de atención</label>
+            <select id="tipo_atencion" required>
+              <option value="">Seleccione...</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="condicion_medica">Condición médica</label>
+            <select id="condicion_medica" required>
+              <option value="">Seleccione...</option>
+            </select>
+          </div>
+
+          <div class="field full-width">
+            <label for="observaciones">Observaciones</label>
+            <textarea id="observaciones" rows="2" placeholder="Ej. Le gusta morder cosas"></textarea>
+          </div>
+
+          <div class="field divider full-width">
+            <h3>Datos del dueño(a)</h3>
+          </div>
+
+          <div class="field">
+            <label for="nombre_dueno">Nombres</label>
+            <input type="text" id="nombre_dueno" required placeholder="Ej. Jesilin Lisbet">
+          </div>
+
+          <div class="field">
+            <label for="apellido_dueno">Apellidos</label>
+            <input type="text" id="apellido_dueno" required placeholder="Ej. Santos Almonte">
+          </div>
+
+          <div class="field">
+            <label for="dni_dueno">DNI</label>
+            <input type="text" id="dni_dueno" required placeholder="Ej. 60978228" maxlength="8">
+          </div>
+
+          <div class="field">
+            <label for="celular">Celular</label>
+            <input type="text" id="celular" required placeholder="Ej. 955350857" maxlength="9">
+          </div>
+
+          <div class="field full-width">
+            <label for="correo">Correo</label>
+            <input type="email" id="correo" required placeholder="Ej. jesilinsantos@gmail.com">
+          </div>
+
+        </div>
+
+        <button type="submit" id="btn-submit">Registrar mascota</button>
+        <div id="mensaje" class="mensaje"></div>
+      </form>
+    </section>
+
+    <section class="card list-card">
+      <div class="list-header">
+        <h2>Mascotas registradas</h2>
+        <div class="filter-box">
+          <label for="filtro-especie">Filtrar por especie:</label>
+          <select id="filtro-especie">
+            <option value="">Todas</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="tabla-mascotas">
+          <thead>
+            <tr>
+              <th>Mascota</th>
+              <th>Edad</th>
+              <th>Peso</th>
+              <th>Dueño</th>
+              <th>DNI Dueño</th>
+              <th>Celular</th>
+              <th>Especie</th>
+              <th>Raza</th>
+              <th>Tipo de atención</th>
+              <th>Condición médica</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-body">
+            <tr><td colspan="10" class="loading-row">Cargando registros...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>VetCare © 2026 — Plataforma de registro veterinario</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+</html>
